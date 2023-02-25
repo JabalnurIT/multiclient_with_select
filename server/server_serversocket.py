@@ -18,18 +18,22 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # print(self.data)
         path_file = "server/files/" + self.filename
         file = open(path_file, "rb")
-        file_size = os.path.getsize(path_file)
+        filesize = os.path.getsize(path_file)
+        print(f">> Client meminta {self.filename} berukuran {filesize} bytes")
+
+        # read file
         data = file.read()
-        # print(file_size)
 
         header = "file-name: "+self.filename+"\n"
-        header = header + "file-size: "+str(file_size)+"\n\n\n"
+        header = header + "file-size: "+str(filesize)+"\n\n\n"
 
         self.request.send(header.encode())
 
         self.request.sendall(data)
 
         self.request.send(b"<END>")
+
+        print(f">> Server Telah Mengirim {self.filename} berukuran {filesize} bytes")
 
         file.close()
 

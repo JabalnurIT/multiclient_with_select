@@ -1,6 +1,7 @@
 import socket
 import select
 import sys
+import os
 
 server_address = ('127.0.0.1', 5001)
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,14 +21,35 @@ try:
                 input_socket.append(client_socket)        
             
             else:            	
-                data = sock.recv(1024)
-                print(sock.getpeername(), data)
+                # receive filename
+                filename = sock.recv(1024).strip().decode("utf-8")
+                
+                path_file = "server/files/" + filename
+                file = open(path_file, "rb")
+                filesize = os.path.getsize(path_file)
+                print(f">> Client meminta {filename} berukuran {filesize} bytes")
+                
+                # read file
+                data = file.read()
             
+                header = "file-name: "+ filename + "\n"
+                header = header + "file-size: " + str(filesize)+"\n\n\n"
+
                 if data:
-                    sock.send(data)
+                    sock.send(header.encode())
+
+                    sock.sendall(data)
+                    sock.send(b"<END>")
+
+                    print(f">> Server Telah Mengirim {filename} berukuran {filesize} bytes")
                 else:                    
                     sock.close()
                     input_socket.remove(sock)
+                file.close()
+                
+                
+
+
 
 except KeyboardInterrupt:        
     server_socket.close()

@@ -22,24 +22,18 @@ if command == "download":
 
         file = open("client/files/"+filename, "wb")
 
-        file_bytes = b"ada"
+        file_bytes = b""
 
         success = False
 
-        progress = tqdm.tqdm(unit="B", unit_scale=True, unit_divisor=1000, total=int(filesize))
-
         while not success:
             data = sock.recv(1024)
+            file_bytes += data
             if file_bytes[-5:] == b"<END>":
                 success = True
-            else:
-                file_bytes += data
-            progress.update(1024)
         
         file.write(file_bytes)
+        print(f">> Berhasil Menyimpan {filename} berukuran {filesize} bytes")
 
         file.close
-
-    # print("Sent:     {}".format(data))
-    # print("Received: {}".format(received))
 
