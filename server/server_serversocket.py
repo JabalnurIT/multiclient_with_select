@@ -39,7 +39,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         file.close()
 
 if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
+    HOST, PORT = "192.168.1.5", 9999
     server_address = (HOST, PORT)
 
     print("Server is Running and Listening ...")

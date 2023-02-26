@@ -1,7 +1,7 @@
 import socket
 import sys
 
-server_address = ('127.0.0.1', 5001)
+server_address = ('192.168.1.5', 5001)
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(server_address)
 print(f"Client is connected with server in {server_address}")

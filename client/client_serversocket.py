@@ -1,7 +1,7 @@
 import socket
 import sys
 
-HOST, PORT = "localhost", 9999
+HOST, PORT = "192.168.1.5", 9999
 server_address = (HOST, PORT)
 
 # Create a socket (SOCK_STREAM means a TCP socket)
