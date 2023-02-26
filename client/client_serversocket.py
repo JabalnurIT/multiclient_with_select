@@ -2,16 +2,20 @@ import socket
 import sys
 
 HOST, PORT = "localhost", 9999
-input = sys.stdin.readline()
-input = input.split(" ")
-command = input[0]
-filename = input[1]
+server_address = (HOST, PORT)
 
-if command == "download":
-    # Create a socket (SOCK_STREAM means a TCP socket)
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
-        # Connect to server and send data
-        sock.connect((HOST, PORT))
+# Create a socket (SOCK_STREAM means a TCP socket)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    # Connect to server and send data
+    sock.connect(server_address)
+    print(f"Client is connected with server in {server_address}")
+
+    inputs = input("Input: ")
+    inputs = inputs.split(" ")
+    command = inputs[0]
+    filename = inputs[1]
+
+    if command == "download":
         sock.sendall(bytes(filename + "\n", "utf-8"))
 
         # Receive data from the server and shut down

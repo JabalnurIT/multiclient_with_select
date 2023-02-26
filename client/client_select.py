@@ -4,13 +4,14 @@ import sys
 server_address = ('127.0.0.1', 5001)
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(server_address)
+print(f"Client is connected with server in {server_address}")
 
 try:
     while True:
-        input = sys.stdin.readline()
-        input = input.split(" ")
-        command = input[0]
-        filename = input[1]
+        inputs = input("Input: ")
+        inputs = inputs.split(" ")
+        command = inputs[0]
+        filename = inputs[1]
 
         if command == "download":
             # send filename to download

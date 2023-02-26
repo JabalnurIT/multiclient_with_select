@@ -12,6 +12,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
     """
 
     def handle(self):
+
         # self.request is the TCP socket connected to the client
         self.filename = self.request.recv(1024).strip().decode("utf-8")
         print("{} wrote:".format(self.client_address[0]))
@@ -39,9 +40,13 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 if __name__ == "__main__":
     HOST, PORT = "localhost", 9999
+    server_address = (HOST, PORT)
+
+    print("Server is Running and Listening ...")
+    print(f"Server is estabilished in {server_address}")
 
     # Create the server, binding to localhost on port 9999
-    with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
+    with socketserver.TCPServer(server_address, MyTCPHandler) as server:
         # Activate the server; this will keep running until you
         # interrupt the program with Ctrl-C
         server.serve_forever()

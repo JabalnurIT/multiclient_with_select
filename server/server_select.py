@@ -9,6 +9,9 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind(server_address)
 server_socket.listen(5)
 
+print("Server is Running and Listening ...")
+print(f"Server is estabilished in {server_address}")
+
 input_socket = [server_socket]
 
 try:
