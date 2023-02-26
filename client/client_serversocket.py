@@ -1,6 +1,5 @@
 import socket
 import sys
-import tqdm
 
 HOST, PORT = "localhost", 9999
 input = sys.stdin.readline()
