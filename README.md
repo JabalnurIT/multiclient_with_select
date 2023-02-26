@@ -44,14 +44,14 @@ Challenge:
 - Menggunakan virtual box untuk simulasi dua host atau lebih.
 
  ## Struktur Folder:
- + 5025201007_5025201058_5025201241
-    + client
-		  + client_select.py
-		  + client_serversocket.py
-	  + server
-		  + server_select.py
-		  + server_serversocket.py
-		  + files
+ - 5025201007_5025201058_5025201241
+	- client
+		- client_select.py
+		- client_serversocket.py
+	- server
+		- server_select.py
+		- server_serversocket.py
+		- files
 		
  ## Cara Menjalankan Program
  
